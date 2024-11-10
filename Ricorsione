@@ -33,6 +33,18 @@ a. Alla pressione del bottone “Calcola percorso” avviare l’algoritmo di ri
 b. Stampare a video il percorso con peso di ogni arco e distanza geodesica tra i due stati
 c. Hint: Per il calcolo della massima distanza tra stati usare i campi “lat” e “lng” del db
 
+    def getPath(self):
+        # caching con variabili della classe (percorso migliore e peso maggiore)
+        self._bestComp = []
+        self._bestdTot = 0
+        # inizializzo il parziale con il nodo iniziale
+        parziale = []
+        for node in self.graph.nodes:
+            parziale.append(node)
+            self._ricorsionev2(parziale)
+            parziale.pop()
+        return self._bestComp
+
     def ricorsione(self, parziale):
         '''esploro tutti percorsi percorribili dal grafo,
            salvo i migliori con le condizioni di terminazione'''
