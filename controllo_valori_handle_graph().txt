@@ -29,6 +29,12 @@ self._view.txt_result1.controls.clear()
 
 
  annoStr = self._view._txtAnno.value
+
+if annoStr == "":
+	 self._view.txt_result.controls.clear()
+            self._view.txt_result.append(ft.Text(f"anno non inserito"))
+            self._view.update_page()
+            return
         try:
            anno = int(annoStr)
         except ValueError:
